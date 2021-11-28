@@ -1,0 +1,18 @@
+.card {
+    display: flex;
+    padding: 2em;
+    border-bottom: 1px solid #eee;
+}
+
+.card img {
+    margin-right: 1em;
+}
+
+.card .info {
+    flex-grow: 1;
+}
+
+.card .info .title-container {
+    display: flex;
+    justify-content: space-between;
+}
