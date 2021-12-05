@@ -23,6 +23,7 @@
 
 .dropdown .input-container input {
     background-color: #F5F5F5;
+    color: #757575;
     border: 1px solid #BDBDBD;
     border-right: none;
     border-top-left-radius: .25em;
@@ -58,6 +59,7 @@
 }
 
 .dropdown .list .list-item {
+    color: #757575;
     border: none;
     border-bottom: 1px solid #BDBDBD;
     background-color: transparent;
