@@ -14,12 +14,12 @@ export const Toolbar = (props: ToolbarProps) => (
         <Dropdown
             label="Launch Site"
             items={props.launches.map(launch => ({ id: launch.launch_site.site_id, value: launch.launch_site.site_name }))}
-            onChange={(newValue) => props.onChange && props.onChange('launch_site', newValue)}
+            onChange={(newValue) => props.onChange('launch_site', newValue)}
         />
         <Dropdown
             label="Rocket"
             items={props.launches.map(launch => ({ id: launch.rocket.rocket_id, value: launch.rocket.rocket_name }))}
-            onChange={(newValue) => props.onChange && props.onChange('rocket', newValue)}
+            onChange={(newValue) => props.onChange('rocket', newValue)}
         />
     </div>
 )
