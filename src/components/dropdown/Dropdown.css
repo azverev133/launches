@@ -1,6 +1,7 @@
 .dropdown {
     display: flex;
     flex-direction: column;
+    margin: 0 5px;
 }
 
 .dropdown .label-container {
@@ -32,6 +33,11 @@
     cursor: pointer;
 }
 
+.dropdown-open .input-container input {
+    border-bottom: none;
+    border-radius: .25em 0 0 0;
+}
+
 .dropdown .input-container input:focus {
     outline: none;
 }
@@ -43,6 +49,11 @@
     border-left: none;
     border-top-right-radius: .25em;
     border-bottom-right-radius: .25em;
+}
+
+.dropdown-open .input-container .arrow-container {
+    border-bottom: none;
+    border-radius: 0 .25em 0 0;
 }
 
 .dropdown .input-container .arrow-container img {

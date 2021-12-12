@@ -35,8 +35,6 @@ export const App = () => {
             .then(async response => setLaunches(await response.json()))
     }, [])
 
-    console.log(launches)
-
     return (
         <div className="App">
             <Title title="Launches" />

@@ -17,19 +17,19 @@ export const Dropdown = (props: DropdownProps) => {
     const [selectedItem, setSelectedItem] = useState<ICustomMap>(allTemplate)
 
     return (
-        <div className="dropdown" style={props.style}>
+        <div className={`dropdown ${open ? 'dropdown-open': ''}`} style={props.style}>
             <div className="label-container">
                 <span>{props.label || ''}</span>
             </div>
             <div className="input-container" onClick={() => setOpen(!open)}>
-                <input type="text" value={selectedItem.value} readOnly style={open ? { borderBottom: 'none', borderRadius: '.25em 0 0 0'} : {}} />
-                <div className="arrow-container" style={open ? { borderBottom: 'none', borderRadius: '0 .25em 0 0'} : {}}>
+                <input type="text" value={selectedItem.value} readOnly />
+                <div className="arrow-container">
                     <img className={`${open ? 'arrow-reversed' : ''}`} src={ExpandArrow} alt="Expand arrow" />
                 </div>
             </div>
             <div className={`list ${open ? 'list-open' : ''}`}>
                 {
-                    [allTemplate, ...props.items].map(item =>
+                    [allTemplate, ...[...new Map(props.items.map(item => [item.id, item]))].map(item => item[1])].map(item =>
                         <button
                             className="list-item"
                             key={item.id}

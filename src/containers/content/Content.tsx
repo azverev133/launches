@@ -10,6 +10,6 @@ interface ContentProps {
 
 export const Content = (props: ContentProps) => (
     <div className="content">
-        {props.launches && props.launches.map(launch => <Card key={launch.flight_number} width={document.body.clientWidth / 2} launch={launch} />)}
+        {props.launches && props.launches.map(launch => <Card key={`${launch.flight_number}_${launch.mission_name}`} launch={launch} />)}
     </div>
 )
