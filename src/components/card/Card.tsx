@@ -15,15 +15,7 @@ export const Card = (props: CardProps) => {
             <div className="info">
                 <div className="title-container">
                     <strong>{props.launch.mission_name}</strong>
-                    <span>{
-                        props.launch.launch_date_local
-                            ? props.launch.launch_date_local
-                                .split('T')[0]
-                                .split('-')
-                                .reverse()
-                                .join('.')
-                            : 'Unknown'
-                    }</span>
+                    <span>{props.launch.launch_date}</span>
                 </div>
                 <p>
                     {props.launch.details || (props.launch.upcoming ? 'Upcoming' : 'Unknown')}

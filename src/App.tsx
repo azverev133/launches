@@ -32,7 +32,17 @@ export const App = () => {
 
     useEffect(() => {
         fetch('https://api.spacexdata.com/v3/launches ')
-            .then(async response => setLaunches(await response.json()))
+            .then(async response => {
+                const initLaunches = await response.json()
+
+                setLaunches(initLaunches.map((initLaunch: ILaunch) => {
+                    initLaunch.launch_date = initLaunch.launch_date_local
+                        ? new Date(initLaunch.launch_date_local).toLocaleDateString('ru-Ru')
+                        : 'Unknown'
+
+                    return initLaunch
+                }))
+            })
     }, [])
 
     return (

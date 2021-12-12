@@ -20,6 +20,7 @@ export interface ILaunch {
     launch_date_unix: number
     launch_date_utc: string
     launch_date_local: string
+    launch_date: string
     is_tentative: boolean
     tentative_max_precision: string
     tbd: boolean
