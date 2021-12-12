@@ -5,20 +5,21 @@ import { Title } from "./components/title/Title"
 import { Content } from "./containers/content/Content"
 import { Toolbar } from "./containers/toolbar/Toolbar"
 
-import { ILaunch } from "./types/entities"
+import {ICustomMap, ILaunch} from "./types/entities"
 
 export const App = () => {
     const [launches, setLaunches] = useState<ILaunch[] | []>([])
 
-    const [launchSiteFilter, setLaunchSiteFilter] = useState<String>('All')
-    const [rocketFilter, setRocketFilter] = useState<String>('All')
+    const allFilterTemplate = { id: '0', value: 'All' }
+    const [launchSiteFilter, setLaunchSiteFilter] = useState<ICustomMap>(allFilterTemplate)
+    const [rocketFilter, setRocketFilter] = useState<ICustomMap>(allFilterTemplate)
 
     const filter = (launches: ILaunch[]): ILaunch[] =>
         launches
-            .filter(launch => launch.launch_site.site_name === launchSiteFilter || launchSiteFilter === 'All')
-            .filter(launch => launch.rocket.rocket_name === rocketFilter || rocketFilter === 'All')
+            .filter(launch => launch.launch_site.site_name === launchSiteFilter.value || launchSiteFilter.value === 'All')
+            .filter(launch => launch.rocket.rocket_name === rocketFilter.value || rocketFilter.value === 'All')
 
-    const onToolbarChange = (type: string, newValue: string) => {
+    const onToolbarChange = (type: string, newValue: ICustomMap) => {
         switch (type) {
             case 'launch_site':
                 setLaunchSiteFilter(newValue)
@@ -34,9 +35,11 @@ export const App = () => {
             .then(async response => setLaunches(await response.json()))
     }, [])
 
+    console.log(launches)
+
     return (
         <div className="App">
-            <Title title="Launches" style={{ paddingLeft: '.9em' }} />
+            <Title title="Launches" />
             <Toolbar launches={launches} onChange={onToolbarChange} />
             <Content launches={filter(launches)} />
         </div>

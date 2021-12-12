@@ -1,18 +1,20 @@
 import "./Dropdown.css"
 import {CSSProperties, useState} from "react"
 import ExpandArrow from "../../assets/svg/expand-arrow.svg"
-import {System} from "../../utils/System"
+import {ICustomMap} from "../../types/entities"
 
 interface DropdownProps {
     label?: string
-    items: string[]
+    items: ICustomMap[]
     style?: CSSProperties
-    onChange?: (newValue: string, oldValue: string) => void
+    onChange?: (newValue: ICustomMap, oldValue: { id: string, value: string }) => void
 }
 
 export const Dropdown = (props: DropdownProps) => {
+    const allTemplate = { id: '0', value: 'All' }
+
     const [open, setOpen] = useState<boolean>(false)
-    const [value, setValue] = useState<string>('All')
+    const [selectedItem, setSelectedItem] = useState<ICustomMap>(allTemplate)
 
     return (
         <div className="dropdown" style={props.style}>
@@ -20,25 +22,25 @@ export const Dropdown = (props: DropdownProps) => {
                 <span>{props.label || ''}</span>
             </div>
             <div className="input-container" onClick={() => setOpen(!open)}>
-                <input type="text" value={value} readOnly style={open ? { borderBottom: 'none', borderRadius: '.25em 0 0 0'} : {}} />
+                <input type="text" value={selectedItem.value} readOnly style={open ? { borderBottom: 'none', borderRadius: '.25em 0 0 0'} : {}} />
                 <div className="arrow-container" style={open ? { borderBottom: 'none', borderRadius: '0 .25em 0 0'} : {}}>
                     <img className={`${open ? 'arrow-reversed' : ''}`} src={ExpandArrow} alt="Expand arrow" />
                 </div>
             </div>
             <div className={`list ${open ? 'list-open' : ''}`}>
                 {
-                    ['All', ...props.items].map(item =>
+                    [allTemplate, ...props.items].map(item =>
                         <button
                             className="list-item"
-                            key={System.uid}
+                            key={item.id}
                             onClick={() => {
-                                const oldValue = value
-                                setValue(item)
+                                const oldValue = selectedItem
+                                setSelectedItem(item)
                                 setOpen(false)
-                                props.onChange && props.onChange(item, oldValue)
+                                props.onChange && props.onChange(selectedItem, oldValue)
                             }}
                         >
-                            {item}
+                            {item.value}
                         </button>
                     )
                 }

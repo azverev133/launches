@@ -1,7 +1,6 @@
 import "./Content.css"
 
 import { Card } from "../../components/card/Card"
-import { System } from "../../utils/System"
 
 import { ILaunch } from "../../types/entities"
 
@@ -11,6 +10,6 @@ interface ContentProps {
 
 export const Content = (props: ContentProps) => (
     <div className="content">
-        {props.launches && props.launches.map(launch => <Card key={System.uid} width={document.body.clientWidth / 2} launch={launch} />)}
+        {props.launches && props.launches.map(launch => <Card key={launch.flight_number} width={document.body.clientWidth / 2} launch={launch} />)}
     </div>
 )

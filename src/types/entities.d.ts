@@ -29,3 +29,8 @@ export interface ILaunch {
     details?: string
     [key: string]: any
 }
+
+interface ICustomMap {
+    id: string
+    value: string
+}
