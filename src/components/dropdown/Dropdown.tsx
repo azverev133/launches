@@ -1,5 +1,5 @@
 import "./Dropdown.css"
-import {CSSProperties, useState} from "react"
+import {CSSProperties, useEffect, useRef, useState} from "react"
 import ExpandArrow from "../../assets/svg/expand-arrow.svg"
 import {ICustomMap} from "../../types/entities"
 
@@ -16,8 +16,18 @@ export const Dropdown = (props: DropdownProps) => {
     const [open, setOpen] = useState<boolean>(false)
     const [selectedItem, setSelectedItem] = useState<ICustomMap>(allTemplate)
 
+    const dropdownRef = useRef<HTMLDivElement>(null)
+    const listRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (listRef.current && dropdownRef.current) {
+            listRef.current.style.width = dropdownRef.current.offsetWidth - 2 + 'px'
+            listRef.current.style.top = dropdownRef.current.getBoundingClientRect().bottom - 1 + 'px'
+        }
+    }, [])
+
     return (
-        <div className={`dropdown ${open ? 'dropdown-open': ''}`} style={props.style}>
+        <div ref={dropdownRef} className={`dropdown ${open ? 'dropdown-open': ''}`} style={props.style}>
             <div className="label-container">
                 <span>{props.label || ''}</span>
             </div>
@@ -27,7 +37,7 @@ export const Dropdown = (props: DropdownProps) => {
                     <img className={`${open ? 'arrow-reversed' : ''}`} src={ExpandArrow} alt="Expand arrow" />
                 </div>
             </div>
-            <div className={`list ${open ? 'list-open' : ''}`}>
+            <div ref={listRef} className={`list ${open ? 'list-open' : ''}`}>
                 {
                     [allTemplate, ...[...new Map(props.items.map(item => [item.id, item]))].map(item => item[1])].map(item =>
                         <button

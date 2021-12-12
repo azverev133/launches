@@ -11,6 +11,7 @@
 .dropdown .list {
     display: none;
     flex-direction: column;
+    position: absolute;
 }
 
 .dropdown .list-open {
