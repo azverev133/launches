@@ -47,7 +47,8 @@ export const Dropdown = (props: DropdownProps) => {
                                 const oldValue = selectedItem
                                 setSelectedItem(item)
                                 setOpen(false)
-                                props.onChange && props.onChange(selectedItem, oldValue)
+                                console.log({selectedItem, oldValue, item})
+                                props.onChange && props.onChange(item, oldValue)
                             }}
                         >
                             {item.value}

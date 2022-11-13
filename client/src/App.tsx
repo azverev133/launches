@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import './App.css'
 
 import { Title } from "./components/title/Title"
@@ -19,7 +19,7 @@ export const App = () => {
             .filter(launch => launch.launch_site.site_name === launchSiteFilter.value || launchSiteFilter.value === 'All')
             .filter(launch => launch.rocket.rocket_name === rocketFilter.value || rocketFilter.value === 'All')
 
-    const onToolbarChange = (type: string, newValue: ICustomMap) => {
+    const onToolbarChange = useCallback((type: string, newValue: ICustomMap) => {
         switch (type) {
             case 'launch_site':
                 setLaunchSiteFilter(newValue)
@@ -28,7 +28,7 @@ export const App = () => {
                 setRocketFilter(newValue)
                 break
         }
-    }
+    }, [])
 
     useEffect(() => {
         fetch('https://api.spacexdata.com/v3/launches ')
