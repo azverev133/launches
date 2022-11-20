@@ -2,6 +2,16 @@
 
 This is a solution for displaying a list of SpaceX launches with the ability to filter the list.
 
+`cd client && npm run start`
+
+`cd server && npm run build && npm run start`
+
+`npm run build && npm run start`
+
+`docker build .`
+
+`docker run {imageId}`
+
 ## Table of contents
 
 - [Overview](#overview)
@@ -32,6 +42,7 @@ Users should be able to:
 - [React](https://reactjs.org/) - FrontEnd Framework
 - [Node.js](https://nodejs.org/en/) - BackEnd Language
 - [Express](https://expressjs.com/) - BackEnd Framework
+- [Docker](https://www.docker.com/) - Containerizing
 
 ### Useful resources
 
