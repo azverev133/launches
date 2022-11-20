@@ -2,17 +2,19 @@
 
 This is a solution for displaying a list of SpaceX launches with the ability to filter the list.
 
+local react-dev:
 `cd client && npm run start`
 
+local node-dev:
 `cd server && npm run build && npm run start`
 
-`npm run build && npm run start`
+main:
+`npm run prod`
 
-`docker build .`
+image:
+`docker build .` or [Image on Docker Hub](https://hub.docker.com/r/axvc/launches)
 
-`docker run {imageId}`
-
-[Image on Docker Hub](https://hub.docker.com/r/axvc/launches-image)
+`docker run -p {local-port}:4200 {image}`
 
 ## Table of contents
 
