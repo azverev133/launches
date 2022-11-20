@@ -12,6 +12,8 @@ This is a solution for displaying a list of SpaceX launches with the ability to 
 
 `docker run {imageId}`
 
+[Image on Docker Hub](https://hub.docker.com/r/axvc/launches-image)
+
 ## Table of contents
 
 - [Overview](#overview)
